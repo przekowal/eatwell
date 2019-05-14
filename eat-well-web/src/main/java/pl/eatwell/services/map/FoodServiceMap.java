@@ -1,16 +1,17 @@
 package pl.eatwell.services.map;
 
 import org.springframework.stereotype.Service;
+import pl.eatwell.model.Food;
 import pl.eatwell.model.Ingredient;
-import pl.eatwell.services.IngredientService;
+import pl.eatwell.services.FoodService;
 
 import java.util.Set;
 
 @Service
-public class IngredientServiceMap extends AbstractMapService<Ingredient, Long> implements IngredientService {
+public class FoodServiceMap extends AbstractMapService<Food, Long> implements FoodService {
 
     @Override
-    public Set<Ingredient> findAll() {
+    public Set<Food> findAll() {
         return super.findAll();
     }
 
@@ -20,17 +21,17 @@ public class IngredientServiceMap extends AbstractMapService<Ingredient, Long> i
     }
 
     @Override
-    public void delete(Ingredient ingredient) {
+    public void delete(Food ingredient) {
         super.delete(ingredient);
     }
 
     @Override
-    public Ingredient save(Ingredient ingredient) {
-        return super.save(ingredient.getId(), ingredient);
+    public Food save(Food food) {
+        return super.save(food.getId(), food);
     }
 
     @Override
-    public Ingredient findById(Long id) {
+    public Food findById(Long id) {
         return super.findById(id);
     }
 
