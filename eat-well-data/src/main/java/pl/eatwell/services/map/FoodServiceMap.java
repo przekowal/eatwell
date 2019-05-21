@@ -27,7 +27,7 @@ public class FoodServiceMap extends AbstractMapService<Food, Long> implements Fo
 
     @Override
     public Food save(Food food) {
-        return super.save(food.getId(), food);
+        return super.save(food);
     }
 
     @Override

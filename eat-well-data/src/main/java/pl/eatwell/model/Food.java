@@ -2,9 +2,11 @@ package pl.eatwell.model;
 
 public class Food extends BaseEntity {
 
+
     private String name;
     private String description;
     private String category;
+    private Boolean glutenFree;
 
     public String getCategory() {
         return category;
@@ -28,5 +30,13 @@ public class Food extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getGlutenFree() {
+        return glutenFree;
+    }
+
+    public void setGlutenFree(Boolean glutenFree) {
+        this.glutenFree = glutenFree;
     }
 }
