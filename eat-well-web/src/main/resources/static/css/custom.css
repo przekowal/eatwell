@@ -1,6 +1,20 @@
-.h1 {
-    background-color: #0c5460;
+html {
+    font-size: 14px;
 }
-.eat-test {
-    background-color: #1c7430;
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.container {
+    max-width: 960px;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
+
+.card-deck .card {
+    min-width: 220px;
 }

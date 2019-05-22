@@ -5,13 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.eatwell.model.Food;
 import pl.eatwell.model.Recipe;
 import pl.eatwell.services.FoodService;
 import pl.eatwell.services.RecipeService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("recipes")
@@ -29,7 +25,7 @@ public class RecipeController {
     public String showRecipe(Model model){
 
         model.addAttribute("recipes", recipeService.findAll());
-        return "recipes/recipe";
+        return "recipes";
     }
 
     @GetMapping("/design")
