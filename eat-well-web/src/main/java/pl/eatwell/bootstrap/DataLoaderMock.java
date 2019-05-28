@@ -3,9 +3,12 @@ package pl.eatwell.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.eatwell.model.Food;
+import pl.eatwell.model.Ingredient;
 import pl.eatwell.model.Recipe;
 import pl.eatwell.services.FoodService;
 import pl.eatwell.services.RecipeService;
+
+import java.util.ArrayList;
 
 @Component
 public class DataLoaderMock implements CommandLineRunner {
@@ -20,18 +23,6 @@ public class DataLoaderMock implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
-        Recipe recipe1 = new Recipe();
-        recipe1.setName("Chicken with Fries");
-        recipe1.setDescription("Fried chicken with chips");
-        recipe1.setDifficulty("medium");
-        recipeService.save(recipe1);
-
-        Recipe recipe2 = new Recipe();
-        recipe2.setName("Onion Soup");
-        recipe2.setDescription("Tasty onion soup");
-        recipe2.setDifficulty("low");
-        recipeService.save(recipe2);
 
         Food food1 = new Food();
         food1.setName("Onion");
@@ -62,6 +53,50 @@ public class DataLoaderMock implements CommandLineRunner {
         food5.setDescription("Gouda Cheese");
         food5.setCategory("Diary");
         foodService.save(food5);
+
+        Food food6 = new Food();
+        food6.setName("Butter");
+        food6.setDescription("Natural Butter");
+        food6.setCategory("Diary");
+        foodService.save(food6);
+
+        Recipe recipe1 = new Recipe();
+        recipe1.setName("Chicken with Fries");
+        recipe1.setDescription("Fried chicken with chips");
+        recipe1.setDifficulty("medium");
+        recipe1.setIngredients(new ArrayList<>());
+        Ingredient ingredient1 = new Ingredient();
+        ingredient1.setFood(food1);
+        ingredient1.setWeight(150);
+        recipe1.getIngredients().add(ingredient1);
+        Ingredient ingredient2 =new Ingredient();
+        ingredient2.setFood(food2);
+        ingredient2.setWeight(200);
+        recipe1.getIngredients().add(ingredient2);
+        Ingredient ingredient3 = new Ingredient();
+        ingredient3.setFood(food3);
+        ingredient3.setWeight(300);
+        recipe1.getIngredients().add(ingredient3);
+        recipeService.save(recipe1);
+
+        Recipe recipe2 = new Recipe();
+        recipe2.setName("Onion Soup");
+        recipe2.setDescription("Tasty onion soup");
+        recipe2.setDifficulty("low");
+        Ingredient ingredient4 = new Ingredient();
+        ingredient4.setFood(food4);
+        ingredient4.setWeight(120);
+        recipe2.setIngredients(new ArrayList<>());
+        recipe2.getIngredients().add(ingredient4);
+        Ingredient ingredient5 = new Ingredient();
+        ingredient5.setWeight(240);
+        ingredient5.setFood(food5);
+        recipe2.getIngredients().add(ingredient5);
+        Ingredient ingredient6 = new Ingredient();
+        ingredient6.setWeight(320);
+        ingredient6.setFood(food6);
+        recipe2.getIngredients().add(ingredient6);
+        recipeService.save(recipe2);
 
         System.out.println("Loaded recipes and Foods ...");
     }
