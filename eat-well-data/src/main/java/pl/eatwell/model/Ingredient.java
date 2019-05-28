@@ -11,6 +11,4 @@ public class Ingredient extends Food {
     public void setWeight(Integer weightInGrams) {
         this.weight = weightInGrams;
     }
-
-
 }

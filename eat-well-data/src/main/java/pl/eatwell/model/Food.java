@@ -1,5 +1,7 @@
 package pl.eatwell.model;
 
+import java.util.Map;
+
 public class Food extends BaseEntity {
 
 
@@ -7,6 +9,7 @@ public class Food extends BaseEntity {
     private String description;
     private String category;
     private Boolean glutenFree;
+    private Map<Nutrition, Integer> nutritions;
 
     public String getCategory() {
         return category;
@@ -38,5 +41,13 @@ public class Food extends BaseEntity {
 
     public void setGlutenFree(Boolean glutenFree) {
         this.glutenFree = glutenFree;
+    }
+
+    public Map<Nutrition, Integer> getNutritions() {
+        return nutritions;
+    }
+
+    public void setNutritions(Map<Nutrition, Integer> nutritions) {
+        this.nutritions = nutritions;
     }
 }

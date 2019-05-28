@@ -21,6 +21,11 @@ public class RecipeController {
         this.foodService = foodService;
     }
 
+    @RequestMapping("/recipe1")
+    public String recipe1(){
+        return "recipes/recipe";
+    }
+
     @RequestMapping({"/", ""})
     public String showRecipe(Model model){
 
