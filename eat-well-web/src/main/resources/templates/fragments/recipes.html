@@ -4,86 +4,25 @@
     ...
 </head>
 <body>
-<div class="card-deck mb-3 text-center" th:fragment="recipes">
-
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Recipe Name</th>
-            <th>RecipeDescription</th>
-            <th>Recipe Difficulty</th>
-            <th>Ingredniets number</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="recipe : ${recipes}">
-            <td th:text="${recipe.id}">1</td>
-            <td th:text="${recipe.name}">1</td>
-            <td th:text="${recipe.description}">Joe</td>
-            <td th:text="${recipe.difficulty}"></td>
-            <td th:text="${#lists.size(recipe.ingredients)}"></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Recipe 1</h4>
-        </div>
-        <img src="../static/images/recipe1.jpg" th:src="@{images/recipe1.jpg}" class="card-img-top">
-        <div class="card-body">
-            <h3 class="card-title pricing-card-title">Recipe description</h3>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>Kcal: 359</li>
-                <li>Protein: 34</li>
-                <li>Carbs: 67</li>
-                <li>Fat: 11</li>
-            </ul>
-            <a href="recipes/recipes.html" class="btn btn-sm btn-block btn-outline-primary" th:href="@{/recipes/recipe1}">Check recipe</a>
-        </div>
-        <div class="card-footer">
-            Fitnes score : 88
-        </div>
+<div th:each="recipe: ${recipes}" class="card mb-4 shadow-sm" th:fragment="recipeDiv">
+    <div class="card-header">
+        <h4 th:text="${recipe.name}" class="my-0 font-weight-normal"></h4>
     </div>
-    <!--<div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Recipe 1</h4>
-        </div>
-        <img src="../static/images/recipe2.jpg" th:src="@{images/recipe2.jpg}" class="card-img-top">
-        <div class="card-body">
-            <h3 class="card-title pricing-card-title">Recipe description</h3>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>Kcal: 359</li>
-                <li>Protein: 34</li>
-                <li>Carbs: 67</li>
-                <li>Fat: 11</li>
-            </ul>
-            <a href="recipes/recipes.html" class="btn btn-sm btn-block btn-outline-primary">Check recipe</a>
-        </div>
-        <div class="card-footer">
-            Fitnes score : 88
-        </div>
+    <img src="../static/images/recipe1.jpg" th:src="@{'/images/' + ${recipe.imageUrl}}" class="card-img-top">
+    <div class="card-body">
+        <h3 th:text="${recipe.description}" class="card-title pricing-card-title"></h3>
+        <ul class="list-unstyled mt-3 mb-4">
+            <li>Kcal: 359</li>
+            <li>Protein: 34</li>
+            <li>Carbs: 67</li>
+            <li>Fat: 11</li>
+        </ul>
+        <a href="recipes/recipes.html" class="btn btn-sm btn-block btn-outline-primary"
+           th:href="@{'/recipes/' + ${recipe.id}}">Check recipe</a>
     </div>
-    <div class="card mb-4 shadow-sm">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Recipe 1</h4>
-        </div>
-        <img src="../static/images/recipe3.jpeg" th:src="@{images/recipe3.jpeg}" class="card-img-top">
-        <div class="card-body">
-            <h3 class="card-title pricing-card-title">Recipe description</h3>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>Kcal: 359</li>
-                <li>Protein: 34</li>
-                <li>Carbs: 67</li>
-                <li>Fat: 11</li>
-            </ul>
-            <a href="recipes/recipes.html" class="btn btn-sm btn-block btn-outline-primary">Check recipe</a>
-        </div>
-        <div class="card-footer">
-            Fitnes score : 88
-        </div>
-    </div>-->
+    <div class="card-footer">
+        Fitnes score : 88
+    </div>
 </div>
 </body>
 </html>

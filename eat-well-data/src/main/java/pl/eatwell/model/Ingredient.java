@@ -1,8 +1,12 @@
 package pl.eatwell.model;
 
-public class Ingredient  {
+public class Ingredient extends Food  {
 
-    private Food food;
+    public Ingredient(Food food){
+        super(food);
+    }
+
+    public Ingredient() {}
 
     private Integer weight;
 
@@ -12,13 +16,5 @@ public class Ingredient  {
 
     public void setWeight(Integer weightInGrams) {
         this.weight = weightInGrams;
-    }
-
-    public Food getFood() {
-        return food;
-    }
-
-    public void setFood(Food food) {
-        this.food = food;
     }
 }

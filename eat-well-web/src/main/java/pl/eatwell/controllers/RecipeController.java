@@ -2,9 +2,7 @@ package pl.eatwell.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.eatwell.model.Recipe;
 import pl.eatwell.services.FoodService;
 import pl.eatwell.services.RecipeService;
@@ -21,17 +19,27 @@ public class RecipeController {
         this.foodService = foodService;
     }
 
-    @RequestMapping("/recipe1")
-    public String recipe1(){
-        return "recipes/recipe";
-    }
-
     @RequestMapping({"/", ""})
     public String showRecipe(Model model){
-
         model.addAttribute("recipes", recipeService.findAll());
         return "recipes";
     }
+
+    @RequestMapping("/recipe")
+    public String getRecipe(){
+        return "redirect:/index";
+    }
+
+    @RequestMapping("/{id}")
+    public String getRecipeById(@PathVariable Long id, Model model){
+        model.addAttribute("recipe", recipeService.findById(id));
+        return "recipes/recipe";
+    }
+
+
+
+
+
 
     @GetMapping("/design")
     public String designRecipe(Model model){

@@ -13,31 +13,18 @@
             rel="stylesheet"
             href="../static/css/custom.css"
             th:href="@{/css/custom.css}">
-
-
 </head>
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm" th:replace="fragments/menu :: menu">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Features</a>
-        <a class="p-2 text-dark" href="#">Enterprise</a>
-        <a class="p-2 text-dark" href="#">Support</a>
-        <a class="p-2 text-dark" href="#">Pricing</a>
-    </nav>
-    <a class="btn btn-outline-primary" href="#">Sign up</a>
-</div>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm" th:replace="fragments/menu :: menu"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <img src="../../static/images/recipe1.jpg" th:src="@{../images/recipe1.jpg}" class="card-img-top">
+                <img src="../../static/images/recipe1.jpg" th:src="@{'/images/' + ${recipe.imageUrl}}" class="card-img-top">
             </div>
             <div class="col-md-6">
                 <div>
-                    <h2>Recipe 1</h2>
-                    <p>A scelerisque libero viverra eu condimentum mollis suscipit mi consectetur semper dis ipsum nisi
-                        in nullam aliquet iaculis in eros euismod bibendum. Adipiscing volutpat fringilla bibendum duis a
-                        maecenas eu lorem accumsan fames sem faucibus ad mauris aliquam nam.</p>
+                    <h2 th:text="${recipe.name}"></h2>
+                    <p th:text="${recipe.description}"></p>
                     <h4>Nutrition</h4>
                     <ul class="list-unstyled mt-3 mb-4">
                         <li>Kcal: 359</li>
@@ -46,12 +33,8 @@
                         <li>Fat: 11</li>
                     </ul>
                     <h4>Ingredients list</h4>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li>Ingredient 1</li>
-                        <li>Ingredient 2</li>
-                        <li>Ingredient 3</li>
-                        <li>Ingredient 4</li>
-                        <li>Ingredient 5</li>
+                    <ul class="list-unstyled mt-3 mb-4" th:each="ingredient: ${recipe.ingredients}">
+                        <li th:text="${ingredient.name} + ' ' + ${ingredient.weight} + ' grams'"></li>
                     </ul>
                 </div>
             </div>
