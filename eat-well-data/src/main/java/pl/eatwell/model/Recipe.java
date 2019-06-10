@@ -8,6 +8,7 @@ public class Recipe extends Food {
 
     private User user;
     private String difficulty;
+    private RecipeType recipeType;
     private ArrayList<Ingredient> ingredients;
     private String imageUrl;
     private LocalDate date;
@@ -22,6 +23,14 @@ public class Recipe extends Food {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public RecipeType getRecipeType() {
+        return recipeType;
+    }
+
+    public void setRecipeType(RecipeType recipeType) {
+        this.recipeType = recipeType;
     }
 
     public List<Ingredient> getIngredients() {

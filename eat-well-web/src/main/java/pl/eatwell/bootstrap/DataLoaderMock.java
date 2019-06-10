@@ -2,11 +2,11 @@ package pl.eatwell.bootstrap;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.eatwell.model.Food;
-import pl.eatwell.model.Ingredient;
-import pl.eatwell.model.Recipe;
+import pl.eatwell.model.*;
 import pl.eatwell.services.FoodService;
 import pl.eatwell.services.RecipeService;
+import pl.eatwell.services.RecipeTypeService;
+import pl.eatwell.services.UserService;
 
 import java.util.ArrayList;
 
@@ -15,10 +15,14 @@ public class DataLoaderMock implements CommandLineRunner {
 
     private final RecipeService recipeService;
     private final FoodService foodService;
+    private final RecipeTypeService recipeTypeService;
+    private final UserService userService;
 
-    public DataLoaderMock(RecipeService recipeService, FoodService foodService) {
+    public DataLoaderMock(RecipeService recipeService, FoodService foodService, RecipeTypeService recipeTypeService, UserService userService) {
         this.recipeService = recipeService;
         this.foodService = foodService;
+        this.recipeTypeService = recipeTypeService;
+        this.userService = userService;
     }
 
     @Override
@@ -65,6 +69,18 @@ public class DataLoaderMock implements CommandLineRunner {
         recipe1.setDescription("Fried chicken with chips");
         recipe1.setDifficulty("medium");
         recipe1.setImageUrl("recipe1.jpg");
+
+        RecipeType recipeType1 = new RecipeType();
+        recipeType1.setType("Main dish");
+        recipeTypeService.save(recipeType1);
+        recipe1.setRecipeType(recipeType1);
+
+        User user1 = new User();
+        user1.setFirstName("Marcin");
+        user1.setLastName("Kowal");
+        userService.save(user1);
+        recipe1.setUser(user1);
+
         recipe1.setIngredients(new ArrayList<>());
         Ingredient ingredient1 = new Ingredient(food1);
         ingredient1.setWeightInGrams(150);
@@ -82,6 +98,18 @@ public class DataLoaderMock implements CommandLineRunner {
         recipe2.setDescription("Tasty onion soup");
         recipe2.setDifficulty("low");
         recipe2.setImageUrl("recipe2.jpg");
+
+        RecipeType recipeType2 = new RecipeType();
+        recipeType2.setType("Soup");
+        recipeTypeService.save(recipeType2);
+        recipe2.setRecipeType(recipeType2);
+
+        User user2 = new User();
+        user2.setFirstName("Darek ");
+        user2.setLastName("Mik");
+        userService.save(user2);
+        recipe2.setUser(user2);
+
         Ingredient ingredient4 = new Ingredient(food4);
         ingredient4.setWeightInGrams(120);
         recipe2.setIngredients(new ArrayList<>());
