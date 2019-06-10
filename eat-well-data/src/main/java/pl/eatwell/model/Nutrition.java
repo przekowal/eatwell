@@ -1,12 +1,23 @@
 package pl.eatwell.model;
 
-public enum Nutrition {
+public class Nutrition extends BaseEntity{
 
-    KCAL("kcal"), PROTEIN("protein"), CARBS("carbs"), FAT("fat");
+    private String name;
+    private String unitOfMeasure;
 
-    public final String label;
+    public String getName() {
+        return name;
+    }
 
-    Nutrition(String label) {
-        this.label = label;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(String unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
     }
 }

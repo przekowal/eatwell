@@ -8,7 +8,7 @@ public class Food extends BaseEntity {
     private String description;
     private String category;
     private Boolean glutenFree;
-    private Map<Nutrition, Integer> nutritions;
+    private Map<Nutrition, Float> nutritions;
 
     //TODO zastanowic sie jak bedzie z id
     protected Food(Food food){
@@ -53,11 +53,11 @@ public class Food extends BaseEntity {
         this.glutenFree = glutenFree;
     }
 
-    public Map<Nutrition, Integer> getNutritions() {
+    public Map<Nutrition, Float> getNutritions() {
         return nutritions;
     }
 
-    public void setNutritions(Map<Nutrition, Integer> nutritions) {
+    public void setNutritions(Map<Nutrition, Float> nutritions) {
         this.nutritions = nutritions;
     }
 }

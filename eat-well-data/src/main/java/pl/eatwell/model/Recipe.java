@@ -1,5 +1,6 @@
 package pl.eatwell.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class Recipe extends Food {
     private String difficulty;
     private ArrayList<Ingredient> ingredients;
     private String imageUrl;
+    private LocalDate date;
 
     public User getUser() { return user; }
 
@@ -38,5 +40,11 @@ public class Recipe extends Food {
         this.imageUrl = imageUrl;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }

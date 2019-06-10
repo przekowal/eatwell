@@ -67,13 +67,13 @@ public class DataLoaderMock implements CommandLineRunner {
         recipe1.setImageUrl("recipe1.jpg");
         recipe1.setIngredients(new ArrayList<>());
         Ingredient ingredient1 = new Ingredient(food1);
-        ingredient1.setWeight(150);
+        ingredient1.setWeightInGrams(150);
         recipe1.getIngredients().add(ingredient1);
         Ingredient ingredient2 =new Ingredient(food2);
-        ingredient2.setWeight(200);
+        ingredient2.setWeightInGrams(200);
         recipe1.getIngredients().add(ingredient2);
         Ingredient ingredient3 = new Ingredient(food3);
-        ingredient3.setWeight(300);
+        ingredient3.setWeightInGrams(300);
         recipe1.getIngredients().add(ingredient3);
         recipeService.save(recipe1);
 
@@ -83,14 +83,14 @@ public class DataLoaderMock implements CommandLineRunner {
         recipe2.setDifficulty("low");
         recipe2.setImageUrl("recipe2.jpg");
         Ingredient ingredient4 = new Ingredient(food4);
-        ingredient4.setWeight(120);
+        ingredient4.setWeightInGrams(120);
         recipe2.setIngredients(new ArrayList<>());
         recipe2.getIngredients().add(ingredient4);
         Ingredient ingredient5 = new Ingredient(food5);
-        ingredient5.setWeight(240);
+        ingredient5.setWeightInGrams(240);
         recipe2.getIngredients().add(ingredient5);
         Ingredient ingredient6 = new Ingredient(food6);
-        ingredient6.setWeight(320);
+        ingredient6.setWeightInGrams(320);
         recipe2.getIngredients().add(ingredient6);
         recipeService.save(recipe2);
 

@@ -1,5 +1,7 @@
 package pl.eatwell.model;
 
+import java.util.Map;
+
 public class Ingredient extends Food  {
 
     public Ingredient(Food food){
@@ -8,13 +10,32 @@ public class Ingredient extends Food  {
 
     public Ingredient() {}
 
-    private Integer weight;
+    private Map<Nutrition, Float> nutritions;
 
-    public Integer getWeight() {
-        return weight;
+    private Integer weightInGrams;
+
+    public Integer getWeightInGrams() {
+        return weightInGrams;
     }
 
-    public void setWeight(Integer weightInGrams) {
-        this.weight = weightInGrams;
+    public void setWeightInGrams(Integer weightInGrams) {
+        this.weightInGrams = weightInGrams;
+    }
+
+    @Override
+    public Map<Nutrition, Float> getNutritions() {
+        return nutritions;
+    }
+
+    @Override
+    public void setNutritions(Map<Nutrition, Float> nutritions) {
+        this.nutritions = nutritions;
+    }
+
+    //TODO check, move to service or read from db
+    public void calculateNutrition(){
+        for(Nutrition nutItem: super.getNutritions().keySet()){
+            this.nutritions.put(nutItem, super.getNutritions().get(nutItem).floatValue() * this.weightInGrams / 100);
+        }
     }
 }

@@ -1,10 +1,13 @@
 package pl.eatwell.model;
 
-public class User {
+import java.util.Set;
+
+public class User extends BaseEntity {
 
     private String firstName;
     private String lastName;
     private String image;
+    private Set<Recipe> recipes;
 
     public String getFirstName() {
         return firstName;
@@ -29,4 +32,13 @@ public class User {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
 }
