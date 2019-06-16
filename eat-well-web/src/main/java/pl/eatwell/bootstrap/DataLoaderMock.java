@@ -28,6 +28,13 @@ public class DataLoaderMock implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        int countRecipes = recipeService.findAll().size();
+        if(countRecipes == 0){
+            load();
+        }
+    }
+
+    private void load() {
         Food food1 = new Food();
         food1.setName("Onion");
         food1.setDescription("White Onion");
@@ -67,7 +74,7 @@ public class DataLoaderMock implements CommandLineRunner {
         Recipe recipe1 = new Recipe();
         recipe1.setName("Chicken with Fries");
         recipe1.setDescription("Fried chicken with chips");
-        recipe1.setDifficulty("medium");
+        recipe1.setDifficulty(Difficulty.EASY);
         recipe1.setImageUrl("recipe1.jpg");
 
         RecipeType recipeType1 = new RecipeType();
@@ -82,13 +89,16 @@ public class DataLoaderMock implements CommandLineRunner {
         recipe1.setUser(user1);
 
         recipe1.setIngredients(new ArrayList<>());
-        Ingredient ingredient1 = new Ingredient(food1);
+        Ingredient ingredient1 = new Ingredient();
+        ingredient1.setFood(food1);
         ingredient1.setWeightInGrams(150);
         recipe1.getIngredients().add(ingredient1);
-        Ingredient ingredient2 =new Ingredient(food2);
+        Ingredient ingredient2 =new Ingredient();
+        ingredient2.setFood(food2);
         ingredient2.setWeightInGrams(200);
         recipe1.getIngredients().add(ingredient2);
-        Ingredient ingredient3 = new Ingredient(food3);
+        Ingredient ingredient3 = new Ingredient();
+        ingredient3.setFood(food3);
         ingredient3.setWeightInGrams(300);
         recipe1.getIngredients().add(ingredient3);
         recipeService.save(recipe1);
@@ -96,7 +106,7 @@ public class DataLoaderMock implements CommandLineRunner {
         Recipe recipe2 = new Recipe();
         recipe2.setName("Onion Soup");
         recipe2.setDescription("Tasty onion soup");
-        recipe2.setDifficulty("low");
+        recipe2.setDifficulty(Difficulty.EASY);
         recipe2.setImageUrl("recipe2.jpg");
 
         RecipeType recipeType2 = new RecipeType();
@@ -110,14 +120,17 @@ public class DataLoaderMock implements CommandLineRunner {
         userService.save(user2);
         recipe2.setUser(user2);
 
-        Ingredient ingredient4 = new Ingredient(food4);
+        Ingredient ingredient4 = new Ingredient();
+        ingredient4.setFood(food4);
         ingredient4.setWeightInGrams(120);
         recipe2.setIngredients(new ArrayList<>());
         recipe2.getIngredients().add(ingredient4);
-        Ingredient ingredient5 = new Ingredient(food5);
+        Ingredient ingredient5 = new Ingredient();
+        ingredient5.setFood(food5);
         ingredient5.setWeightInGrams(240);
         recipe2.getIngredients().add(ingredient5);
-        Ingredient ingredient6 = new Ingredient(food6);
+        Ingredient ingredient6 = new Ingredient();
+        ingredient6.setFood(food6);
         ingredient6.setWeightInGrams(320);
         recipe2.getIngredients().add(ingredient6);
         recipeService.save(recipe2);

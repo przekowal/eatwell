@@ -3,7 +3,6 @@ package pl.eatwell.services.map;
 import org.springframework.stereotype.Service;
 import pl.eatwell.model.Recipe;
 import pl.eatwell.services.RecipeService;
-
 import java.util.Set;
 
 @Service

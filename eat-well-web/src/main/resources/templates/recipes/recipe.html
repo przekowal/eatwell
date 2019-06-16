@@ -34,7 +34,7 @@
                     </ul>
                     <h4>Ingredients list</h4>
                     <ul class="list-unstyled mt-3 mb-4" th:each="ingredient: ${recipe.ingredients}">
-                        <li th:text="${ingredient.name} + ' ' + ${ingredient.weightInGrams} + ' grams'"></li>
+                        <li th:text="${ingredient.food.name} + ' ' + ${ingredient.weightInGrams} + ' grams'"></li>
                     </ul>
                 </div>
             </div>
