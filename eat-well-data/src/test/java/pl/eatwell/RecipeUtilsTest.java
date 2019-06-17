@@ -8,7 +8,7 @@ import java.util.List;
 
 import static pl.eatwell.FoodUtils.getFullListOfSixFoods;
 
-public class RecipeUtils {
+public class RecipeUtilsTest {
 
     private static List<Food> foods = getFullListOfSixFoods();
 
@@ -26,6 +26,8 @@ public class RecipeUtils {
         recipeType1.setType("Main dish");
         recipe1.setRecipeTypes(new HashSet<>());
         recipe1.getRecipeTypes().add(recipeType1);
+
+        recipe1.setDirections(new Directions("Heat oil in a large skillet over medium heat and add chicken. Season with garlic powder, salt, pepper, and poultry seasoning. Cook until chicken is no longer pink inside and juices run clear, 10 to 12 minutes. Transfer cooked chicken to a large mixing bowl."));
 
         User user1 = new User();
         user1.setFirstName("Marcin");
@@ -49,6 +51,8 @@ public class RecipeUtils {
         recipeType2.setType("Soup");
         recipe2.setRecipeTypes(new HashSet<>());
         recipe2.getRecipeTypes().add(recipeType2);
+
+        recipe2.setDirections(new Directions("Add celery, red onion, and almonds to the bowl with the chicken. Toss in mayonnaise, lime juice, cumin, chili powder, and cilantro. Season with additional salt, pepper, and garlic powder. Add additional mayonnaise if salad seems too dry."));
 
         User user2 = new User();
         user2.setFirstName("Darek ");

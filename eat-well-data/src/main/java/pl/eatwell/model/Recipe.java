@@ -38,7 +38,7 @@ public class Recipe extends BaseEntity {
     private Difficulty difficulty;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Notes notes;
+    private Directions directions;
 
     @ManyToOne
     private User user;
@@ -79,6 +79,11 @@ public class Recipe extends BaseEntity {
         ingredniet.setRecipe(this);
         this.ingredients.add(ingredniet);
         return this;
+    }
+
+    public void setDirections(Directions directions) {
+        this.directions = directions;
+        directions.setRecipe(this);
     }
 
     @Override
@@ -160,13 +165,8 @@ public class Recipe extends BaseEntity {
         this.sourceUrl = sourceUrl;
     }
 
-    public Notes getNotes() {
-        return notes;
-    }
-
-    public void setNotes(Notes notes) {
-        this.notes = notes;
-        notes.setRecipe(this);
+    public Directions getDirections() {
+        return directions;
     }
 
     public Byte[] getImage() {

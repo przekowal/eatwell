@@ -3,18 +3,24 @@ package pl.eatwell.model;
 import javax.persistence.*;
 
 @Entity
-public class Notes extends BaseEntity {
+public class Directions extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Lob
-    private String recipeNotes;
+    private String notes;
 
     //Recipe owns this
     @OneToOne
     private Recipe recipe;
+
+    public Directions(String notes){
+        this.notes = notes;
+    }
+
+    public Directions() {}
 
     @Override
     public Long getId() {
@@ -26,12 +32,12 @@ public class Notes extends BaseEntity {
         this.id = id;
     }
 
-    public String getRecipeNotes() {
-        return recipeNotes;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public Recipe getRecipe() {

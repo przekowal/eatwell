@@ -2,9 +2,7 @@ package pl.eatwell;
 
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import pl.eatwell.model.Food;
 import pl.eatwell.model.Ingredient;
 import pl.eatwell.model.Nutrition;
 import pl.eatwell.model.Recipe;
@@ -21,7 +19,7 @@ public class RecipeTest {
 
     @Before
     public void setup(){
-        this.recipes = RecipeUtils.getListOf2Recipes();
+        this.recipes = RecipeUtilsTest.getListOf2Recipes();
     }
 
     @Test

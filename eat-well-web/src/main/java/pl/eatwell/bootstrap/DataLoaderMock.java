@@ -93,6 +93,8 @@ public class DataLoaderMock implements CommandLineRunner {
         userService.save(user1);
         recipe1.setUser(user1);
 
+        recipe1.setDirections(new Directions("Heat oil in a large skillet over medium heat and add chicken. Season with garlic powder, salt, pepper, and poultry seasoning. Cook until chicken is no longer pink inside and juices run clear, 10 to 12 minutes. Transfer cooked chicken to a large mixing bowl."));
+
         Ingredient ingredient1 = new Ingredient(foods.get(0), new Measure("pieces", 2f));
         ingredient1.getMeasure().setWeighInGrams(150);
         Ingredient ingredient2 =new Ingredient(foods.get(1), new Measure("grams", 200f));
@@ -117,6 +119,8 @@ public class DataLoaderMock implements CommandLineRunner {
         user2.setLastName("Mik");
         userService.save(user2);
         recipe2.setUser(user2);
+
+        recipe2.setDirections(new Directions("Add celery, red onion, and almonds to the bowl with the chicken. Toss in mayonnaise, lime juice, cumin, chili powder, and cilantro. Season with additional salt, pepper, and garlic powder. Add additional mayonnaise if salad seems too dry."));
 
         Ingredient ingredient4 = new Ingredient(foods.get(3), new Measure("mililiters", 120f));
         ingredient4.getMeasure().setWeighInGrams(120);

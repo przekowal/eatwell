@@ -20,18 +20,14 @@
         <div class="row">
             <div class="col-md-6">
                 <img src="../../static/images/recipe1.jpg" th:src="@{'/images/' + ${recipe.imageUrl}}" class="card-img-top">
+                <h5>Directions:</h5>
+                <p th:text="${recipe.directions.notes}"></p>
             </div>
             <div class="col-md-6">
                 <div>
                     <h2 th:text="${recipe.name}"></h2>
                     <p th:text="${recipe.description}"></p>
                     <h4>Nutrition</h4>
-                    <!--<ul th:each="nut: ${recipe.nutritions}" class="list-unstyled mt-3 mb-4">
-                        <li th:text="${nut.key.name} + ': ' ${nut.value} "></li>
-                        &lt;!&ndash;<li>Protein: 34</li>
-                        <li>Carbs: 67</li>
-                        <li>Fat: 11</li>&ndash;&gt;
-                    </ul>-->
                     <ul th:each="nutr: ${recipe.nutritions}" class="list-unstyled mt-3 mb-4">
                         <li th:text="${nutr.key.name} + ': ' + ${nutr.value}"></li>
                     </ul>
