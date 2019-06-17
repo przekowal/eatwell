@@ -3,6 +3,7 @@ package pl.eatwell.model;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Entity
 public class Food extends BaseEntity {
@@ -17,11 +18,10 @@ public class Food extends BaseEntity {
     private Boolean glutenFree;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Measure> measures;
+    private Set<Measure> measures;
 
-    //@ElementCollection(targetClass=Nutrition.class)
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "food")
-    private List<Nutrition> nutritions;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Nutrition> nutritions;
 
     //TODO zastanowic sie jak bedzie z id
     protected Food(Food food){
@@ -31,7 +31,7 @@ public class Food extends BaseEntity {
         this.glutenFree = food.glutenFree;
     }
 
-    public Food () {}
+    public Food() {}
 
     public String getCategory() {
         return category;
@@ -75,11 +75,19 @@ public class Food extends BaseEntity {
         this.id = id;
     }
 
-   /* public List<Nutrition> getNutritions() {
+    public Set<Nutrition> getNutritions() {
         return nutritions;
     }
 
-    public void setNutritions(List<Nutrition> nutritions) {
+    public void setNutritions(Set<Nutrition> nutritions) {
         this.nutritions = nutritions;
-    }*/
+    }
+
+    public Set<Measure> getMeasures() {
+        return measures;
+    }
+
+    public void setMeasures(Set<Measure> measures) {
+        this.measures = measures;
+    }
 }

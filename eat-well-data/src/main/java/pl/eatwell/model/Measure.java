@@ -11,10 +11,19 @@ public class Measure extends BaseEntity {
 
     private String description;
 
-    private Float weighInGrams;
+    private Float amount;
 
-    @ManyToOne
-    private Food food;
+    private Integer weighInGrams;
+
+    public Measure(String description, Float amount){
+        this.description = description;
+        this.amount = amount;
+        if(description.equalsIgnoreCase("grams")){
+            this.weighInGrams = amount.intValue();
+        }
+    }
+
+    public Measure(){}
 
     @Override
     public Long getId() {
@@ -34,19 +43,19 @@ public class Measure extends BaseEntity {
         this.description = description;
     }
 
-    public Float getWeighInGrams() {
+    public Integer getWeighInGrams() {
         return weighInGrams;
     }
 
-    public void setWeighInGrams(Float weighInGrams) {
+    public void setWeighInGrams(Integer weighInGrams) {
         this.weighInGrams = weighInGrams;
     }
 
-    public Food getFood() {
-        return food;
+    public Float getAmount() {
+        return amount;
     }
 
-    public void setFood(Food food) {
-        this.food = food;
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 }

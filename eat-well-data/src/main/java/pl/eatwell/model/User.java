@@ -1,9 +1,6 @@
 package pl.eatwell.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -17,8 +14,8 @@ public class User extends BaseEntity {
     private String lastName;
     private String image;
 
-    //TODO initialize
-    //private Set<Recipe> recipes;
+    @OneToMany(mappedBy = "user")
+    private Set<Recipe> recipes;
 
     public String getFirstName() {
         return firstName;
@@ -44,12 +41,12 @@ public class User extends BaseEntity {
         this.image = image;
     }
 
-    /*public Set<Recipe> getRecipes() {
+    public Set<Recipe> getRecipes() {
         return recipes;
     }
 
     public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
-    }*/
+    }
 
 }

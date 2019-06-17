@@ -11,7 +11,7 @@
     <img src="../static/images/recipe1.jpg" th:src="@{'/images/' + ${recipe.imageUrl}}" class="card-img-top">
     <div class="card-body">
         <h3 th:text="${recipe.description}" class="card-title pricing-card-title"></h3>
-        <p th:text="${recipe.recipeType.type}" class="card-text"></p>
+        <p th:each="recipeType: ${recipe.recipeTypes}" class="card-text" th:text="${recipeType.type}"></p>
         <p th:text="${'Added by: ' + recipe.user.firstName}"></p>
         <p></p>
         <ul class="list-unstyled mt-3 mb-4">

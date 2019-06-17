@@ -1,6 +1,7 @@
 package pl.eatwell.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Nutrition extends BaseEntity{
@@ -9,9 +10,9 @@ public class Nutrition extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    //this is not Measure
     private String unitOfMeasure;
-    @ManyToOne
-    private Food food;
+    private Float amount;
 
     public String getName() {
         return name;
@@ -39,13 +40,24 @@ public class Nutrition extends BaseEntity{
         this.id = id;
     }
 
-    public Food getFood() {
-        return food;
+    public Float getAmount() {
+        return amount;
     }
 
-    public void setFood(Food food) {
-        this.food = food;
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Nutrition nutrition = (Nutrition) o;
+        return name.equals(nutrition.name);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 }

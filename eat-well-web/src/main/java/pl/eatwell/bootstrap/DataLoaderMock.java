@@ -8,7 +8,7 @@ import pl.eatwell.services.RecipeService;
 import pl.eatwell.services.RecipeTypeService;
 import pl.eatwell.services.UserService;
 
-import java.util.ArrayList;
+import java.util.*;
 
 @Component
 public class DataLoaderMock implements CommandLineRunner {
@@ -71,6 +71,10 @@ public class DataLoaderMock implements CommandLineRunner {
         food6.setCategory("Diary");
         foodService.save(food6);
 
+        //Set<Food> foods = foodService.findAll();
+        List<Food> foods = new ArrayList<>(foodService.findAll());
+        foods.forEach(f -> f.setNutritions(populateListOfFoodsWithNutrition()));
+
         Recipe recipe1 = new Recipe();
         recipe1.setName("Chicken with Fries");
         recipe1.setDescription("Fried chicken with chips");
@@ -80,7 +84,8 @@ public class DataLoaderMock implements CommandLineRunner {
         RecipeType recipeType1 = new RecipeType();
         recipeType1.setType("Main dish");
         recipeTypeService.save(recipeType1);
-        recipe1.setRecipeType(recipeType1);
+        recipe1.setRecipeTypes(new HashSet<>());
+        recipe1.getRecipeTypes().add(recipeType1);
 
         User user1 = new User();
         user1.setFirstName("Marcin");
@@ -88,19 +93,11 @@ public class DataLoaderMock implements CommandLineRunner {
         userService.save(user1);
         recipe1.setUser(user1);
 
-        recipe1.setIngredients(new ArrayList<>());
-        Ingredient ingredient1 = new Ingredient();
-        ingredient1.setFood(food1);
-        ingredient1.setWeightInGrams(150);
-        recipe1.getIngredients().add(ingredient1);
-        Ingredient ingredient2 =new Ingredient();
-        ingredient2.setFood(food2);
-        ingredient2.setWeightInGrams(200);
-        recipe1.getIngredients().add(ingredient2);
-        Ingredient ingredient3 = new Ingredient();
-        ingredient3.setFood(food3);
-        ingredient3.setWeightInGrams(300);
-        recipe1.getIngredients().add(ingredient3);
+        Ingredient ingredient1 = new Ingredient(foods.get(0), new Measure("pieces", 2f));
+        ingredient1.getMeasure().setWeighInGrams(150);
+        Ingredient ingredient2 =new Ingredient(foods.get(1), new Measure("grams", 200f));
+        Ingredient ingredient3 = new Ingredient(foods.get(2), new Measure("grams", 300f));
+        recipe1.addIngredient(ingredient1).addIngredient(ingredient2).addIngredient(ingredient3);
         recipeService.save(recipe1);
 
         Recipe recipe2 = new Recipe();
@@ -112,7 +109,8 @@ public class DataLoaderMock implements CommandLineRunner {
         RecipeType recipeType2 = new RecipeType();
         recipeType2.setType("Soup");
         recipeTypeService.save(recipeType2);
-        recipe2.setRecipeType(recipeType2);
+        recipe2.setRecipeTypes(new HashSet<>());
+        recipe2.getRecipeTypes().add(recipeType2);
 
         User user2 = new User();
         user2.setFirstName("Darek ");
@@ -120,21 +118,44 @@ public class DataLoaderMock implements CommandLineRunner {
         userService.save(user2);
         recipe2.setUser(user2);
 
-        Ingredient ingredient4 = new Ingredient();
-        ingredient4.setFood(food4);
-        ingredient4.setWeightInGrams(120);
-        recipe2.setIngredients(new ArrayList<>());
-        recipe2.getIngredients().add(ingredient4);
-        Ingredient ingredient5 = new Ingredient();
-        ingredient5.setFood(food5);
-        ingredient5.setWeightInGrams(240);
-        recipe2.getIngredients().add(ingredient5);
-        Ingredient ingredient6 = new Ingredient();
-        ingredient6.setFood(food6);
-        ingredient6.setWeightInGrams(320);
-        recipe2.getIngredients().add(ingredient6);
+        Ingredient ingredient4 = new Ingredient(foods.get(3), new Measure("mililiters", 120f));
+        ingredient4.getMeasure().setWeighInGrams(120);
+        Ingredient ingredient5 = new Ingredient(foods.get(4), new Measure("grams", 150f));
+        Ingredient ingredient6 = new Ingredient(foods.get(5), new Measure("grams", 130f));
+        recipe2.addIngredient(ingredient4).addIngredient(ingredient5).addIngredient(ingredient6);
         recipeService.save(recipe2);
 
         System.out.println("Loaded recipes and Foods ...");
+    }
+
+    private static Set<Nutrition> populateListOfFoodsWithNutrition(){
+
+        Set<Nutrition> nuts = new HashSet<>();
+
+        Nutrition kCal = new Nutrition();
+        kCal.setName("calories");
+        kCal.setUnitOfMeasure("calories");
+        kCal.setAmount(200f);
+        nuts.add(kCal);
+
+        Nutrition protein = new Nutrition();
+        protein.setName("protein");
+        protein.setUnitOfMeasure("grams");
+        protein.setAmount(30f);
+        nuts.add(protein);
+
+        Nutrition carb = new Nutrition();
+        carb.setName("carb");
+        carb.setUnitOfMeasure("grams");
+        carb.setAmount(100f);
+        nuts.add(carb);
+
+        Nutrition fat = new Nutrition();
+        fat.setName("fat");
+        fat.setUnitOfMeasure("grams");
+        fat.setAmount(40f);
+        nuts.add(fat);
+
+        return nuts;
     }
 }

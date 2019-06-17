@@ -26,15 +26,18 @@
                     <h2 th:text="${recipe.name}"></h2>
                     <p th:text="${recipe.description}"></p>
                     <h4>Nutrition</h4>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li>Kcal: 359</li>
-                        <li>Protein: 34</li>
+                    <!--<ul th:each="nut: ${recipe.nutritions}" class="list-unstyled mt-3 mb-4">
+                        <li th:text="${nut.key.name} + ': ' ${nut.value} "></li>
+                        &lt;!&ndash;<li>Protein: 34</li>
                         <li>Carbs: 67</li>
-                        <li>Fat: 11</li>
+                        <li>Fat: 11</li>&ndash;&gt;
+                    </ul>-->
+                    <ul th:each="nutr: ${recipe.nutritions}" class="list-unstyled mt-3 mb-4">
+                        <li th:text="${nutr.key.name} + ': ' + ${nutr.value}"></li>
                     </ul>
                     <h4>Ingredients list</h4>
                     <ul class="list-unstyled mt-3 mb-4" th:each="ingredient: ${recipe.ingredients}">
-                        <li th:text="${ingredient.food.name} + ' ' + ${ingredient.weightInGrams} + ' grams'"></li>
+                        <li th:text="${ingredient.food.name} + ': ' + ${ingredient.measure.weighInGrams} + ' grams'"></li>
                     </ul>
                 </div>
             </div>

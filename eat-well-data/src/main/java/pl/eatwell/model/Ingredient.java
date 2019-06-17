@@ -1,7 +1,7 @@
 package pl.eatwell.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 @Entity
@@ -10,7 +10,6 @@ public class Ingredient extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer weightInGrams;
 
     @OneToOne
     private Measure measure;
@@ -18,21 +17,19 @@ public class Ingredient extends BaseEntity {
     @OneToOne
     private Food food;
 
-    //private List<Nutrition> nutrition;
-
     //TODO initialize, multiply nutrition by weight, not from db
-    //private Map<Nutrition, Float> nutritions;
+    @Transient
+    private Map<Nutrition, Float> nutritions = new HashMap<>();
 
     @ManyToOne
     private Recipe recipe;
 
-    public Integer getWeightInGrams() {
-        return weightInGrams;
+    public Ingredient(Food food, Measure measure){
+        this.food = food;
+        this.measure = measure;
     }
 
-    public void setWeightInGrams(Integer weightInGrams) {
-        this.weightInGrams = weightInGrams;
-    }
+    public Ingredient(){}
 
     @Override
     public Long getId() {
@@ -44,21 +41,13 @@ public class Ingredient extends BaseEntity {
         this.id = id;
     }
 
-   /* public List<Nutrition> getNutrition() {
-        return nutrition;
-    }
-
-    public void setNutrition(List<Nutrition> nutrition) {
-        this.nutrition = nutrition;
-    }*/
-
-    /*public Map<Nutrition, Float> getNutritions() {
+    public Map<Nutrition, Float> getNutritions() {
         return nutritions;
     }
 
     public void setNutritions(Map<Nutrition, Float> nutritions) {
         this.nutritions = nutritions;
-    }*/
+    }
 
     public Recipe getRecipe() {
         return recipe;
@@ -77,11 +66,11 @@ public class Ingredient extends BaseEntity {
     }
 
     //TODO check, move to service or read from db
-/*    public void calculateNutrition(){
-        for(Nutrition nutItem: super.getNutritions().keySet()){
-            this.nutritions.put(nutItem, super.getNutritions().get(nutItem).floatValue() * this.weightInGrams / 100);
-        }
-    }*/
+    public void calculateNutrition(){
+        this.food.getNutritions().forEach((nutrition) -> {
+            this.nutritions.put(nutrition, nutrition.getAmount() * this.measure.getWeighInGrams() / 100);
+        });
+    }
 
     public Measure getMeasure() {
         return measure;

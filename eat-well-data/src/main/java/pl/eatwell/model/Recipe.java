@@ -3,9 +3,7 @@ package pl.eatwell.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Recipe extends BaseEntity {
@@ -18,10 +16,10 @@ public class Recipe extends BaseEntity {
     private String name;
     private String description;
 
-    private RecipeType recipeType;
     //TODO initialize
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-    private List<Ingredient> ingredients;
+    private List<Ingredient> ingredients = new ArrayList<>();
+
     private Integer preparationTime;
     private Integer cookingTime;
     private String sourceUrl;
@@ -41,7 +39,47 @@ public class Recipe extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+
+    @ManyToOne
     private User user;
+
+    @Transient
+    private Map<Nutrition, Float> nutritions = new HashMap<>();
+
+    public void calculateNutrition(){
+
+        this.ingredients.forEach(Ingredient::calculateNutrition);
+
+       float totalEnergy = 0;
+       float totalProtein = 0;
+       float totalCarbs = 0;
+       float totalFat = 0;
+
+       for(Ingredient ingredient: this.ingredients){
+           ingredient.calculateNutrition();
+           for(Map.Entry<Nutrition, Float> entry: ingredient.getNutritions().entrySet()){
+               if(entry.getKey().getName().equals("calories")){
+                   totalEnergy += entry.getValue();
+                   this.nutritions.put(entry.getKey(), totalEnergy);
+               } else if(entry.getKey().getName().equals("protein")){
+                   totalProtein += entry.getValue();
+                   this.nutritions.put(entry.getKey(), totalProtein);
+               } else if (entry.getKey().getName().equals("carb")){
+                   totalCarbs += entry.getValue();
+                   this.nutritions.put(entry.getKey(), totalCarbs);
+               } else if (entry.getKey().getName().equals("fat")){
+                   totalFat += entry.getValue();
+                   this.nutritions.put(entry.getKey(), totalFat);
+               }
+           }
+       }
+    }
+
+    public Recipe addIngredient(Ingredient ingredniet){
+        ingredniet.setRecipe(this);
+        this.ingredients.add(ingredniet);
+        return this;
+    }
 
     @Override
     public Long getId() {
@@ -64,14 +102,6 @@ public class Recipe extends BaseEntity {
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
-    }
-
-    public RecipeType getRecipeType() {
-        return recipeType;
-    }
-
-    public void setRecipeType(RecipeType recipeType) {
-        this.recipeType = recipeType;
     }
 
     public void setRecipeTypes(Set<RecipeType> recipeTypes) {
@@ -136,6 +166,7 @@ public class Recipe extends BaseEntity {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+        notes.setRecipe(this);
     }
 
     public Byte[] getImage() {
@@ -164,5 +195,13 @@ public class Recipe extends BaseEntity {
 
     public Set<RecipeType> getRecipeTypes() {
         return recipeTypes;
+    }
+
+    public Map<Nutrition, Float> getNutritions() {
+        return nutritions;
+    }
+
+    public void setNutritions(Map<Nutrition, Float> nutritions) {
+        this.nutritions = nutritions;
     }
 }

@@ -32,14 +32,11 @@ public class RecipeController {
 
     @RequestMapping("/{id}")
     public String getRecipeById(@PathVariable Long id, Model model){
-        model.addAttribute("recipe", recipeService.findById(id));
+        Recipe recipe = recipeService.findById(id);
+        recipe.calculateNutrition();
+        model.addAttribute("recipe", recipe);
         return "recipes/recipe";
     }
-
-
-
-
-
 
     @GetMapping("/design")
     public String designRecipe(Model model){
