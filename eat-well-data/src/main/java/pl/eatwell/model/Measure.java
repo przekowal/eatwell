@@ -1,13 +1,13 @@
 package pl.eatwell.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
 @Entity
 public class Measure extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String description;
 
@@ -21,41 +21,5 @@ public class Measure extends BaseEntity {
         if(description.equalsIgnoreCase("grams")){
             this.weighInGrams = amount.intValue();
         }
-    }
-
-    public Measure(){}
-
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getWeighInGrams() {
-        return weighInGrams;
-    }
-
-    public void setWeighInGrams(Integer weighInGrams) {
-        this.weighInGrams = weighInGrams;
-    }
-
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
     }
 }

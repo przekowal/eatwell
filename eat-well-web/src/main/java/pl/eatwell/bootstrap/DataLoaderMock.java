@@ -34,44 +34,43 @@ public class DataLoaderMock implements CommandLineRunner {
         }
     }
 
-    private void load() {
+    public void load() {
         Food food1 = new Food();
         food1.setName("Onion");
         food1.setDescription("White Onion");
-        food1.setCategory("Vegetable");
+        food1.setFoodCategory(new FoodCategory("vegetable"));
         foodService.save(food1);
 
         Food food2 = new Food();
         food2.setName("Chicken");
         food2.setDescription("Whole Chicken");
-        food2.setCategory("Meat");
+        food2.setFoodCategory(new FoodCategory("meat"));
         foodService.save(food2);
 
         Food food3 = new Food();
         food3.setName("Potato");
         food3.setDescription("White potato");
-        food3.setCategory("Vegetable");
+        food3.setFoodCategory(new FoodCategory("vegetable"));
         foodService.save(food3);
 
         Food food4 = new Food();
         food4.setName("Milk 2%");
         food4.setDescription("Semi skimmed milk");
-        food4.setCategory("Diary");
+        food4.setFoodCategory(new FoodCategory("diary"));
         foodService.save(food4);
 
         Food food5 = new Food();
         food5.setName("Yellow Cheese");
         food5.setDescription("Gouda Cheese");
-        food5.setCategory("Diary");
+        food5.setFoodCategory(new FoodCategory("diary"));
         foodService.save(food5);
 
         Food food6 = new Food();
         food6.setName("Butter");
         food6.setDescription("Natural Butter");
-        food6.setCategory("Diary");
+        food6.setFoodCategory(new FoodCategory("diary"));
         foodService.save(food6);
 
-        //Set<Food> foods = foodService.findAll();
         List<Food> foods = new ArrayList<>(foodService.findAll());
         foods.forEach(f -> f.setNutritions(populateListOfFoodsWithNutrition()));
 

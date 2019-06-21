@@ -1,5 +1,6 @@
 package pl.eatwell.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pl.eatwell.model.Food;
 import pl.eatwell.model.Ingredient;
@@ -8,6 +9,7 @@ import pl.eatwell.services.FoodService;
 import java.util.Set;
 
 @Service
+@Profile(("default, map"))
 public class FoodServiceMap extends AbstractMapService<Food, Long> implements FoodService {
 
     @Override
@@ -36,7 +38,7 @@ public class FoodServiceMap extends AbstractMapService<Food, Long> implements Fo
     }
 
     @Override
-    public Ingredient findByName(String name) {
+    public Food findByName(String name) {
         //TODO
         return null;
     }

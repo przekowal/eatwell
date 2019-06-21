@@ -1,16 +1,12 @@
-package pl.eatwell;
-
-import pl.eatwell.model.*;
+package pl.eatwell.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import static pl.eatwell.FoodUtils.getFullListOfSixFoods;
-
 public class RecipeUtilsTest {
 
-    private static List<Food> foods = getFullListOfSixFoods();
+    private static List<Food> foods = FoodUtils.getFullListOfSixFoods();
 
     public static List<Recipe> getListOf2Recipes(){
 

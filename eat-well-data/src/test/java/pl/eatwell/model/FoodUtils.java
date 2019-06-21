@@ -1,6 +1,7 @@
-package pl.eatwell;
+package pl.eatwell.model;
 
 import pl.eatwell.model.Food;
+import pl.eatwell.model.FoodCategory;
 import pl.eatwell.model.Measure;
 import pl.eatwell.model.Nutrition;
 
@@ -65,37 +66,37 @@ public class FoodUtils {
         Food food1 = new Food();
         food1.setName("Onion");
         food1.setDescription("White Onion");
-        food1.setCategory("Vegetable");
+        food1.setFoodCategory(new FoodCategory("vegetable"));
         foods.add(food1);
 
         Food food2 = new Food();
         food2.setName("Chicken");
         food2.setDescription("Whole Chicken");
-        food2.setCategory("Meat");
+        food2.setFoodCategory(new FoodCategory("meat"));
         foods.add(food2);
 
         Food food3 = new Food();
         food3.setName("Potato");
         food3.setDescription("White potato");
-        food3.setCategory("Vegetable");
+        food3.setFoodCategory(new FoodCategory("vegetable"));
         foods.add(food3);
 
         Food food4 = new Food();
         food4.setName("Milk 2%");
         food4.setDescription("Semi skimmed milk");
-        food4.setCategory("Diary");
+        food4.setFoodCategory(new FoodCategory("diary"));
         foods.add(food4);
 
         Food food5 = new Food();
         food5.setName("Yellow Cheese");
         food5.setDescription("Gouda Cheese");
-        food5.setCategory("Diary");
+        food5.setFoodCategory(new FoodCategory("diary"));
         foods.add(food5);
 
         Food food6 = new Food();
         food6.setName("Butter");
         food6.setDescription("Natural Butter");
-        food6.setCategory("Diary");
+        food6.setFoodCategory(new FoodCategory("diary"));
         foods.add(food6);
 
         return foods;

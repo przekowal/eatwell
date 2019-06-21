@@ -5,5 +5,5 @@ import pl.eatwell.model.Ingredient;
 
 public interface FoodService extends CrudService<Food, Long>  {
 
-    Ingredient findByName(String name);
+    Food findByName(String name);
 }

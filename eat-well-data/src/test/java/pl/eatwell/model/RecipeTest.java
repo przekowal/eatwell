@@ -1,11 +1,8 @@
-package pl.eatwell;
+package pl.eatwell.model;
 
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.eatwell.model.Ingredient;
-import pl.eatwell.model.Nutrition;
-import pl.eatwell.model.Recipe;
 
 import java.util.List;
 

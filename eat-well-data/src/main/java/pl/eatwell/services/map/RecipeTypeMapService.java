@@ -1,5 +1,6 @@
 package pl.eatwell.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pl.eatwell.model.RecipeType;
 import pl.eatwell.services.RecipeTypeService;
@@ -7,6 +8,7 @@ import pl.eatwell.services.RecipeTypeService;
 import java.util.Set;
 
 @Service
+@Profile(("default, map"))
 public class RecipeTypeMapService extends AbstractMapService<RecipeType, Long> implements RecipeTypeService {
 
     @Override

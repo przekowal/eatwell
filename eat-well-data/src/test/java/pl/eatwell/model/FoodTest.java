@@ -1,8 +1,7 @@
-package pl.eatwell;
+package pl.eatwell.model;
 
 import org.junit.Before;
 import org.junit.Test;
-import pl.eatwell.model.Food;
 
 import java.util.List;
 

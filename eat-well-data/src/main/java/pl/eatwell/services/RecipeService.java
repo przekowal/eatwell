@@ -4,5 +4,4 @@ import pl.eatwell.model.Recipe;
 
 public interface RecipeService extends CrudService<Recipe, Long> {
 
-    Recipe findByName(String name);
 }

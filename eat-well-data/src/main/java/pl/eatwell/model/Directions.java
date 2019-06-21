@@ -1,13 +1,15 @@
 package pl.eatwell.model;
 
-import javax.persistence.*;
+import lombok.*;
 
+import javax.persistence.Entity;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
+
+@Data
 @Entity
+@NoArgsConstructor
 public class Directions extends BaseEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Lob
     private String notes;
@@ -20,31 +22,8 @@ public class Directions extends BaseEntity {
         this.notes = notes;
     }
 
-    public Directions() {}
-
-    @Override
-    public Long getId() {
-        return id;
+    protected boolean canEqual(final Object other) {
+        return other instanceof Directions;
     }
 
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
 }

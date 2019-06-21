@@ -1,5 +1,6 @@
 package pl.eatwell.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pl.eatwell.model.User;
 import pl.eatwell.services.UserService;
@@ -7,7 +8,13 @@ import pl.eatwell.services.UserService;
 import java.util.Set;
 
 @Service
+@Profile(("default, map"))
 public class UserServiceMap extends AbstractMapService<User, Long> implements UserService {
+
+    @Override
+    public User findByNickname(String nickName) {
+        return null;
+    }
 
     @Override
     public Set<User> findAll() {
