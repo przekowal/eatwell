@@ -89,6 +89,7 @@ public class DataLoaderMock implements CommandLineRunner {
         User user1 = new User();
         user1.setFirstName("Marcin");
         user1.setLastName("Kowal");
+        user1.setNickname("przekowal");
         userService.save(user1);
         recipe1.setUser(user1);
 

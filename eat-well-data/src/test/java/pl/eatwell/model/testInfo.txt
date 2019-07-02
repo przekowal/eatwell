@@ -1,0 +1,2 @@
+Mock - fake implementation of a class used for testing, like a test double. Mocks implement interface to test DI
+Spy - a partial mock, allowing you to override select methods of a real class. Usually used fo large classes

@@ -24,7 +24,7 @@ public class UserJpaService implements UserService {
 
     @Override
     public User findByNickname(String nickName) {
-        return userRepository.findByNickname(nickName);
+        return userRepository.findByNickname(nickName).get();
     }
 
     @Override

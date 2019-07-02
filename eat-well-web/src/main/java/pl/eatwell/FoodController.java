@@ -1,4 +1,4 @@
-package pl.eatwell.controllers;
+package pl.eatwell;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
