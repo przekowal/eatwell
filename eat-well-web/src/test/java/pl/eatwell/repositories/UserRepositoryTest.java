@@ -36,7 +36,7 @@ public class UserRepositoryTest {
     @Test
    // @Ignore TODO set up integration tests
     public void findByNickname() {
-        Optional<User> user = userRepository.findByNickname("przekowal");
-        assertEquals("przekowal", user.get().getNickname());
+        User user = userRepository.findByNickname("przekowal");
+        assertEquals("przekowal", user.getNickname());
     }
 }

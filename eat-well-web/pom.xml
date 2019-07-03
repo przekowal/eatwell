@@ -24,6 +24,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>pl.eatwell</groupId>
+            <artifactId>eat-well-data</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <!--<scope>compile</scope>-->
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
@@ -31,16 +37,25 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>-->
+            <!-- exclusion for junit 5 -->
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- vintage to use Junit 4 -->
         <dependency>
-            <groupId>pl.eatwell</groupId>
-            <artifactId>eat-well-data</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>4.12.3</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- webjars -->
@@ -106,5 +121,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

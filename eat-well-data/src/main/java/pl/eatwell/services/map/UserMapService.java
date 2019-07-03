@@ -9,11 +9,15 @@ import java.util.Set;
 
 @Service
 @Profile(("default, map"))
-public class UserServiceMap extends AbstractMapService<User, Long> implements UserService {
+public class UserMapService extends AbstractMapService<User, Long> implements UserService {
 
     @Override
     public User findByNickname(String nickName) {
-        return null;
+        return this.findAll()
+                .stream()
+                .filter(user -> user.getNickname().equalsIgnoreCase(nickName))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
