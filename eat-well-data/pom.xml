@@ -59,12 +59,12 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.junit.vintage</groupId>
 			<artifactId>junit-vintage-engine</artifactId>
 			<version>4.12.3</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 		<!-- vintage to use Junit 4 -->
 		<dependency>
 			<groupId>org.junit.vintage</groupId>

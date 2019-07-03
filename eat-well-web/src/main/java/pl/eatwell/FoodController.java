@@ -16,8 +16,8 @@ public class FoodController {
     }
 
     @RequestMapping({"/", ""})
-    public String showRecipe(Model model){
+    public String listFoods(Model model){
         model.addAttribute("foods", foodService.findAll());
-        return "foods/food";
+        return "foods/index";
     }
 }

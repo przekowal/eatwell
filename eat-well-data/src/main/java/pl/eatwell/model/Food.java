@@ -1,8 +1,6 @@
 package pl.eatwell.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -25,4 +23,16 @@ public class Food extends BaseEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
     private FoodCategory foodCategory;
+
+    @Builder
+    public Food(Long id, String name, String description, Boolean glutenFree, Set<Measure> measures,
+                Set<Nutrition> nutritions, FoodCategory foodCategory) {
+        super(id);
+        this.name = name;
+        this.description = description;
+        this.glutenFree = glutenFree;
+        this.measures = measures;
+        this.nutritions = nutritions;
+        this.foodCategory = foodCategory;
+    }
 }
