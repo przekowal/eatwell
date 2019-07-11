@@ -20,22 +20,22 @@ public class FoodUtils {
         Nutrition kCal = new Nutrition();
         kCal.setName("calories");
         kCal.setUnitOfMeasure("calories");
-        kCal.setAmount(200f);
+        kCal.setAmount(200.0);
 
         Nutrition protein = new Nutrition();
         protein.setName("protein");
         protein.setUnitOfMeasure("grams");
-        protein.setAmount(30f);
+        protein.setAmount(30.0);
 
         Nutrition carb = new Nutrition();
         carb.setName("carb");
         carb.setUnitOfMeasure("grams");
-        carb.setAmount(100f);
+        carb.setAmount(100.0);
 
         Nutrition fat = new Nutrition();
         fat.setName("fat");
         fat.setUnitOfMeasure("grams");
-        fat.setAmount(40f);
+        fat.setAmount(40.0);
 
         List<Food> returnedFoods = pupulateListOfFoodsWith100GramMeasures();
         returnedFoods.forEach(f -> f.setNutritions(

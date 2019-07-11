@@ -30,10 +30,10 @@ public class RecipeUtilsTest {
         user1.setLastName("Kowal");
         recipe1.setUser(user1);
 
-        Ingredient ingredient1 = new Ingredient(foods.get(0), new Measure("pieces", 2f));
+        Ingredient ingredient1 = new Ingredient(foods.get(0), new Measure("pieces", 2.0));
         ingredient1.getMeasure().setWeighInGrams(150);
-        Ingredient ingredient2 =new Ingredient(foods.get(1), new Measure("grams", 200f));
-        Ingredient ingredient3 = new Ingredient(foods.get(2), new Measure("grams", 300f));
+        Ingredient ingredient2 =new Ingredient(foods.get(1), new Measure("grams", 200.0));
+        Ingredient ingredient3 = new Ingredient(foods.get(2), new Measure("grams", 300.0));
         recipe1.addIngredient(ingredient1).addIngredient(ingredient2).addIngredient(ingredient3);
         recipes.add(recipe1);
 
@@ -55,10 +55,10 @@ public class RecipeUtilsTest {
         user2.setLastName("Mik");
         recipe2.setUser(user2);
 
-        Ingredient ingredient4 = new Ingredient(foods.get(3), new Measure("mililiters", 120f));
+        Ingredient ingredient4 = new Ingredient(foods.get(3), new Measure("mililiters", 120.0));
         ingredient4.getMeasure().setWeighInGrams(120);
-        Ingredient ingredient5 = new Ingredient(foods.get(4), new Measure("grams", 150f));
-        Ingredient ingredient6 = new Ingredient(foods.get(5), new Measure("grams", 130f));
+        Ingredient ingredient5 = new Ingredient(foods.get(4), new Measure("grams", 150.0));
+        Ingredient ingredient6 = new Ingredient(foods.get(5), new Measure("grams", 130.0));
         recipe2.addIngredient(ingredient4).addIngredient(ingredient5).addIngredient(ingredient6);
         recipes.add(recipe2);
 

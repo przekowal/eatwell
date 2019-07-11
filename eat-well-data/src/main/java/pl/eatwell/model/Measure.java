@@ -10,12 +10,10 @@ import javax.persistence.*;
 public class Measure extends BaseEntity {
 
     private String description;
-
-    private Float amount;
-
+    private Double amount;
     private Integer weighInGrams;
 
-    public Measure(String description, Float amount){
+    public Measure(String description, Double amount){
         this.description = description;
         this.amount = amount;
         if(description.equalsIgnoreCase("grams")){

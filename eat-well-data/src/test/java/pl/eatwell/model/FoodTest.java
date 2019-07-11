@@ -19,7 +19,7 @@ public class FoodTest {
     }
 
     @Test
-    public void listShouldContainSixFiids(){
+    public void listShouldContainSixFields(){
         assertEquals("Sould be six", 6, foods.size());
     }
 

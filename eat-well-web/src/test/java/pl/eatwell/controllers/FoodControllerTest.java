@@ -1,4 +1,4 @@
-package pl.eatwell;
+package pl.eatwell.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import pl.eatwell.FoodController;
 import pl.eatwell.model.Food;
 import pl.eatwell.services.FoodService;
 

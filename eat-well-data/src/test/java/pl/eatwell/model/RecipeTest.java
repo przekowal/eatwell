@@ -20,7 +20,7 @@ public class RecipeTest {
     }
 
     @Test
-    public void GivenNutritionIngredientsRecipeNutritionValueShoudSumUp(){
+    public void GivenNutritionIngredientsRecipeNutritionValueShouldSumUp(){
         Recipe recipe = recipes.get(0);
         Nutrition protein = new Nutrition();
         protein.setName("protein");

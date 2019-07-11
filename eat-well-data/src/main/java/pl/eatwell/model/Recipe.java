@@ -1,17 +1,19 @@
 package pl.eatwell.model;
 
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.*;
 
 @Entity
 @EqualsAndHashCode(exclude =
-        {"ingredients", "image", "recipeTypes", "nutritions", "directions", "user"})
-@Data
+        {"ingredients", "image", "recipeTypes", "nutritions", "directions", "user", "image"})
+@Getter
+@Setter
+@ToString(exclude = {"recipeTypes", "nutritions", "ingredients"})
 public class Recipe extends BaseEntity {
 
     private String name;
@@ -21,14 +23,15 @@ public class Recipe extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    private Integer preparationTime;
-    private Integer cookingTime;
+    private Duration preparationTime;
+    private Duration cookingTime;
     private String sourceUrl;
+    private Integer servings;
     private String imageUrl;
     @Lob
     private Byte[] image;
     private LocalDate date;
-    private Integer servings;
+
 
     @ManyToMany
     @JoinTable(name = "recipe_recipeType",
@@ -46,20 +49,26 @@ public class Recipe extends BaseEntity {
     private User user;
 
     @Transient
-    private Map<Nutrition, Float> nutritions = new HashMap<>();
+    private Map<Nutrition, Double> nutritions = new HashMap<>();
 
+    //To jest chyba zrabane,
     public void calculateNutrition(){
 
-        this.ingredients.forEach(Ingredient::calculateNutrition);
+        //this.ingredients.forEach(Ingredient::calculateNutrition);
+        //this.ingredients.stream().forEach(i -> i.calculateNutrition());
+      /*  for(Ingredient i : this.ingredients){
+            i.calculateNutrition();
+        }*/
 
-       float totalEnergy = 0;
-       float totalProtein = 0;
-       float totalCarbs = 0;
-       float totalFat = 0;
+       double totalEnergy = 0;
+       double totalProtein = 0;
+       double totalCarbs = 0;
+       double totalFat = 0;
 
        for(Ingredient ingredient: this.ingredients){
            ingredient.calculateNutrition();
-           for(Map.Entry<Nutrition, Float> entry: ingredient.getNutritions().entrySet()){
+           //iteruje po mapie tora jest pusta
+           for(Map.Entry<Nutrition, Double> entry: ingredient.getNutritions().entrySet()){
                if(entry.getKey().getName().equals("calories")){
                    totalEnergy += entry.getValue();
                    this.nutritions.put(entry.getKey(), totalEnergy);

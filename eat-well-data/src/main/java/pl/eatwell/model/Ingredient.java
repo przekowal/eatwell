@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
-@Data
+
+@Getter
+@Setter
 @EqualsAndHashCode(exclude = {"nutritions"})
 @NoArgsConstructor
 @Entity
@@ -19,7 +21,7 @@ public class Ingredient extends BaseEntity {
     private Food food;
 
     @Transient
-    private Map<Nutrition, Float> nutritions = new HashMap<>();
+    private Map<Nutrition, Double> nutritions = new HashMap<>();
 
     @ManyToOne
     private Recipe recipe;
@@ -34,6 +36,7 @@ public class Ingredient extends BaseEntity {
         this.food.getNutritions().forEach((nutrition) -> {
             this.nutritions.put(nutrition, nutrition.getAmount() * this.measure.getWeighInGrams() / 100);
         });
+
     }
 
 }

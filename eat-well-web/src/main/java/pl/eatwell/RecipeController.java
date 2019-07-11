@@ -33,6 +33,7 @@ public class RecipeController {
     @RequestMapping("/{id}")
     public String getRecipeById(@PathVariable Long id, Model model){
         Recipe recipe = recipeService.findById(id);
+        //TODO: mock nutritions
         recipe.calculateNutrition();
         model.addAttribute("recipe", recipe);
         return "recipes/recipe";

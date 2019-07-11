@@ -6,7 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class Directions extends BaseEntity {
