@@ -1,11 +1,13 @@
 package pl.eatwell.services.springDataJpa;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
+import pl.eatwell.commands.RecipeCommand;
+import pl.eatwell.converters.RecipeCommandToRecipe;
+import pl.eatwell.converters.RecipeToRecipeCommand;
 import pl.eatwell.model.Recipe;
-import pl.eatwell.repositories.FoodRepository;
 import pl.eatwell.repositories.RecipeRepository;
-import pl.eatwell.repositories.UserRepository;
 import pl.eatwell.services.RecipeService;
 
 import java.util.HashSet;
@@ -13,12 +15,18 @@ import java.util.Set;
 
 @Service
 @Profile("springdatajpa")
+@Slf4j
 public class RecipeJpaService implements RecipeService {
 
     private final RecipeRepository recipeRepository;
+    //TODO check
+    private final RecipeCommandToRecipe recipeCommandToRecipe;
+    private final RecipeToRecipeCommand recipeToRecipeCommand;
 
-    public RecipeJpaService(RecipeRepository recipeRepository) {
+    public RecipeJpaService(RecipeRepository recipeRepository, RecipeCommandToRecipe recipeCommandToRecipe, RecipeToRecipeCommand recipeToRecipeCommand) {
         this.recipeRepository = recipeRepository;
+        this.recipeCommandToRecipe = recipeCommandToRecipe;
+        this.recipeToRecipeCommand = recipeToRecipeCommand;
     }
 
     @Override
@@ -36,8 +44,8 @@ public class RecipeJpaService implements RecipeService {
 
     @Override
     public Recipe save(Recipe recipe) {
-
-        if(recipe.getIngredients() == null || recipe.getUser() == null ){
+        // || recipe.getUser() == null
+        if(recipe.getIngredients() == null){
             throw new RuntimeException("Ingredien and Owner is required");
         }
 
@@ -52,5 +60,14 @@ public class RecipeJpaService implements RecipeService {
     @Override
     public void deleteById(Long aLong) {
         recipeRepository.deleteById(aLong);
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
+        Recipe savedRecipe = recipeRepository.save(detachedRecipe);
+        log.info("Saved recipe: " + savedRecipe.getId());
+
+        return recipeToRecipeCommand.convert(savedRecipe);
     }
 }

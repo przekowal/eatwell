@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import pl.eatwell.converters.RecipeCommandToRecipe;
+import pl.eatwell.converters.RecipeToRecipeCommand;
 import pl.eatwell.model.Recipe;
 import pl.eatwell.repositories.RecipeRepository;
 
@@ -20,10 +22,16 @@ public class RecipeTypeJpaServiceTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeJpaService = new RecipeJpaService(recipeRepository);
+        recipeJpaService = new RecipeJpaService(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test

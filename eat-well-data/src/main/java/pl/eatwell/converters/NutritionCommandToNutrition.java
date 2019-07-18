@@ -1,9 +1,11 @@
 package pl.eatwell.converters;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import pl.eatwell.commands.NutritionCommand;
 import pl.eatwell.model.Nutrition;
 
+@Component
 public class NutritionCommandToNutrition implements Converter<NutritionCommand, Nutrition> {
     @Override
     public Nutrition convert(NutritionCommand source) {

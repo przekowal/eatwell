@@ -1,14 +1,16 @@
 package pl.eatwell;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.eatwell.commands.RecipeCommand;
 import pl.eatwell.model.Recipe;
 import pl.eatwell.services.FoodService;
 import pl.eatwell.services.RecipeService;
 
+@Slf4j
 @Controller
-@RequestMapping("recipes")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -19,18 +21,9 @@ public class RecipeController {
         this.foodService = foodService;
     }
 
-    @RequestMapping({"/", ""})
-    public String showRecipe(Model model){
-        model.addAttribute("recipes", recipeService.findAll());
-        return "recipes";
-    }
 
-    @RequestMapping("/recipe")
-    public String getRecipe(){
-        return "redirect:/index";
-    }
 
-    @RequestMapping("/{id}")
+    @RequestMapping("/recipe/{id}/show")
     public String getRecipeById(@PathVariable Long id, Model model){
         Recipe recipe = recipeService.findById(id);
         //TODO: mock nutritions
@@ -38,6 +31,28 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         return "recipes/recipe";
     }
+
+    @GetMapping
+    @RequestMapping("recipe/new")
+    public String newRecipe(Model model){
+        model.addAttribute("recipe", new RecipeCommand());
+        return "recipes/recipeForm";
+    }
+
+    @PostMapping("recipe")
+    public String saveOrUpdate(@ModelAttribute RecipeCommand command){
+
+        log.info("Recipe command cooking: " + command.getCookingTime());
+        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
+
+        return "redirect:/recipe/" + savedCommand.getId() + "/show" ;
+
+    }
+
+
+
+
+
 
     @GetMapping("/design")
     public String designRecipe(Model model){

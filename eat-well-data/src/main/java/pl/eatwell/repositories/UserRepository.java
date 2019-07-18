@@ -6,8 +6,8 @@ import pl.eatwell.model.User;
 
 import java.util.Optional;
 
-@Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+//@Repository
+/*public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByNickname(String lastName);
-}
+}*/

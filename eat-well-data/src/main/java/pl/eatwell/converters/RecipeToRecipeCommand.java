@@ -3,11 +3,13 @@ package pl.eatwell.converters;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 import pl.eatwell.commands.RecipeCommand;
 import pl.eatwell.model.Recipe;
 
 import java.time.Duration;
 
+@Component
 public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
 
     private final IngredientToIngredientCommand ingredientConverter;
@@ -42,14 +44,17 @@ public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
         recipeCommand.setPreparationTime((int)source.getPreparationTime().toMinutes());
         recipeCommand.setCookingTime((int)source.getPreparationTime().toMinutes());
         recipeCommand.setSourceUrl(source.getSourceUrl());
-        if(source != null && source.getRecipeTypes().size() > 0){
+        if(source != null && source.getRecipeTypes() != null && source.getRecipeTypes().size() > 0){
             source.getRecipeTypes()
                     .forEach(recipeType -> recipeCommand.getRecipeTypes()
                     .add(recipeTypeConverter.convert(recipeType)));
         }
         recipeCommand.setDifficulty(source.getDifficulty());
         recipeCommand.setDirections((directionsConverter.convert(source.getDirections())));
-        recipeCommand.setUser(userConverter.convert(source.getUser()));
+        /*if(source.getUser() != null){
+            recipeCommand.setUser(userConverter.convert(source.getUser()));
+        }*/
+
         return recipeCommand;
     }
 }

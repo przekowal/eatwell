@@ -12,7 +12,7 @@
     <div class="card-body">
         <h3 th:text="${recipe.description}" class="card-title pricing-card-title"></h3>
         <p th:each="recipeType: ${recipe.recipeTypes}" class="card-text" th:text="${recipeType.type}"></p>
-        <p th:text="${'Added by: ' + recipe.user.firstName}"></p>
+        <!--<p th:text="${'Added by: ' + recipe.user.firstName}"></p>-->
         <p></p>
         <ul class="list-unstyled mt-3 mb-4">
             <li>Kcal: 359</li>
@@ -21,7 +21,7 @@
             <li>Fat: 11</li>
         </ul>
         <a href="recipes/recipes.html" class="btn btn-sm btn-block btn-outline-primary"
-           th:href="@{'/recipes/' + ${recipe.id}}">Check recipe</a>
+           th:href="@{'/recipe/' + ${recipe.id} + '/show'}">Check recipe</a>
     </div>
     <div class="card-footer">
         Fitnes score : 88

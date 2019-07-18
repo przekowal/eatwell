@@ -45,8 +45,9 @@ public class Recipe extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private Directions directions;
 
-    @ManyToOne
-    private User user;
+    //@ManyToOne(cascade = CascadeType.DETACH)
+    //@Transient
+    //private User user;
 
     @Transient
     private Map<Nutrition, Double> nutritions = new HashMap<>();

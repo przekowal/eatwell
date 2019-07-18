@@ -28,7 +28,7 @@ public class RecipeUtilsTest {
         User user1 = new User();
         user1.setFirstName("Marcin");
         user1.setLastName("Kowal");
-        recipe1.setUser(user1);
+        //recipe1.setUser(user1);
 
         Ingredient ingredient1 = new Ingredient(foods.get(0), new Measure("pieces", 2.0));
         ingredient1.getMeasure().setWeighInGrams(150);
@@ -53,7 +53,7 @@ public class RecipeUtilsTest {
         User user2 = new User();
         user2.setFirstName("Darek ");
         user2.setLastName("Mik");
-        recipe2.setUser(user2);
+        //recipe2.setUser(user2);
 
         Ingredient ingredient4 = new Ingredient(foods.get(3), new Measure("mililiters", 120.0));
         ingredient4.getMeasure().setWeighInGrams(120);

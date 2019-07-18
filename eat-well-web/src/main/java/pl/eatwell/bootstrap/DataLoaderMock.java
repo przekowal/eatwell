@@ -17,13 +17,13 @@ public class DataLoaderMock implements CommandLineRunner {
     private final RecipeService recipeService;
     private final FoodService foodService;
     private final RecipeTypeService recipeTypeService;
-    private final UserService userService;
+    //private final UserService userService;
 
-    public DataLoaderMock(RecipeService recipeService, FoodService foodService, RecipeTypeService recipeTypeService, UserService userService) {
+    public DataLoaderMock(RecipeService recipeService, FoodService foodService, RecipeTypeService recipeTypeService) {
         this.recipeService = recipeService;
         this.foodService = foodService;
         this.recipeTypeService = recipeTypeService;
-        this.userService = userService;
+        //this.userService = userService;
     }
 
     @Override
@@ -48,35 +48,35 @@ public class DataLoaderMock implements CommandLineRunner {
         food2.setName("Chicken");
         food2.setDescription("Whole Chicken");
         food2.setFoodCategory(new FoodCategory("meat"));
-        food1.setNutritions(populateListOfFoodsWithNutrition());
+        food2.setNutritions(populateListOfFoodsWithNutrition());
         foodService.save(food2);
 
         Food food3 = new Food();
         food3.setName("Potato");
         food3.setDescription("White potato");
         food3.setFoodCategory(new FoodCategory("vegetable"));
-        food1.setNutritions(populateListOfFoodsWithNutrition());
+        food3.setNutritions(populateListOfFoodsWithNutrition());
         foodService.save(food3);
 
         Food food4 = new Food();
         food4.setName("Milk 2%");
         food4.setDescription("Semi skimmed milk");
         food4.setFoodCategory(new FoodCategory("diary"));
-        food1.setNutritions(populateListOfFoodsWithNutrition());
+        food4.setNutritions(populateListOfFoodsWithNutrition());
         foodService.save(food4);
 
         Food food5 = new Food();
         food5.setName("Yellow Cheese");
         food5.setDescription("Gouda Cheese");
         food5.setFoodCategory(new FoodCategory("diary"));
-        food1.setNutritions(populateListOfFoodsWithNutrition());
+        food5.setNutritions(populateListOfFoodsWithNutrition());
         foodService.save(food5);
 
         Food food6 = new Food();
         food6.setName("Butter");
         food6.setDescription("Natural Butter");
         food6.setFoodCategory(new FoodCategory("diary"));
-        food1.setNutritions(populateListOfFoodsWithNutrition());
+        food6.setNutritions(populateListOfFoodsWithNutrition());
         foodService.save(food6);
 
         List<Food> foods = new ArrayList<>(foodService.findAll());
@@ -100,8 +100,8 @@ public class DataLoaderMock implements CommandLineRunner {
         user1.setFirstName("Marcin");
         user1.setLastName("Kowal");
         user1.setNickname("przekowal");
-        userService.save(user1);
-        recipe1.setUser(user1);
+        //userService.save(user1);
+        //recipe1.setUser(user1);
 
         recipe1.setDirections(new Directions("Heat oil in a large skillet over medium heat and add chicken. Season with garlic powder, salt, pepper, and poultry seasoning. Cook until chicken is no longer pink inside and juices run clear, 10 to 12 minutes. Transfer cooked chicken to a large mixing bowl."));
 
@@ -130,8 +130,8 @@ public class DataLoaderMock implements CommandLineRunner {
         User user2 = new User();
         user2.setFirstName("Darek ");
         user2.setLastName("Mik");
-        userService.save(user2);
-        recipe2.setUser(user2);
+        //userService.save(user2);
+        //recipe2.setUser(user2);
 
         recipe2.setDirections(new Directions("Add celery, red onion, and almonds to the bowl with the chicken. Toss in mayonnaise, lime juice, cumin, chili powder, and cilantro. Season with additional salt, pepper, and garlic powder. Add additional mayonnaise if salad seems too dry."));
 

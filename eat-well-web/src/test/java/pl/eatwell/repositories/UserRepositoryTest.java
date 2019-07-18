@@ -1,3 +1,4 @@
+/*
 package pl.eatwell.repositories;
 
 import org.junit.Before;
@@ -27,7 +28,7 @@ import static org.junit.Assert.*;
 public class UserRepositoryTest {
 
     @Autowired
-    UserRepository userRepository;
+    //UserRepository userRepository;
 
     @Before
     public void setUp() throws Exception {
@@ -39,4 +40,4 @@ public class UserRepositoryTest {
         User user = userRepository.findByNickname("przekowal");
         assertEquals("przekowal", user.getNickname());
     }
-}
+}*/

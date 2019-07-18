@@ -8,7 +8,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode(exclude = {"recipes"})
-@Entity
+//@Entity
 @NoArgsConstructor
 public class User extends BaseEntity {
 
@@ -17,7 +17,7 @@ public class User extends BaseEntity {
     private String image;
     private String nickname;
 
-    @OneToMany(mappedBy = "user")
+    //@OneToMany(mappedBy = "user")
     private Set<Recipe> recipes;
 
     @Builder

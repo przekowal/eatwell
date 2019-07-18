@@ -1,3 +1,4 @@
+/*
 package pl.eatwell.services.springDataJpa;
 
 
@@ -16,7 +17,7 @@ import java.util.Set;
 @Profile("springdatajpa")
 public class UserJpaService implements UserService {
 
-    private final UserRepository userRepository;
+    //private final UserRepository userRepository;
 
     public UserJpaService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -54,3 +55,4 @@ public class UserJpaService implements UserService {
         userRepository.deleteById(aLong);
     }
 }
+*/
